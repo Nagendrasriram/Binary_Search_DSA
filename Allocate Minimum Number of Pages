@@ -1,0 +1,53 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int arr[] = {12, 34, 67, 90};
+        int m=2;
+        
+        System.out.print(allocate(arr,m));
+    }
+    public static int allocate(int[] arr,int d)
+    {
+        int low=0,high=0,ab=0;
+        for(int x:arr)
+        {
+            low=Math.max(low,x);
+            high+=x;
+        }
+        
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            
+            if(ans(mid,arr,d))
+            {
+                ab=mid;
+                high=mid-1;
+            }
+            else 
+            {
+                low=mid+1;
+            }
+            
+        }
+        return ab;
+    }
+    public static boolean ans(int mid,int[] arr,int m)
+    {
+        
+        int total=0,stu=1;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]+total<=mid)
+            {
+                total+=arr[i];
+            }
+            else 
+            {
+            stu++;
+            total=arr[i];
+            }
+        }
+        return stu<=m;
+    }
+}
