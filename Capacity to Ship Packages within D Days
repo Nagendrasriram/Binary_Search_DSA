@@ -1,0 +1,53 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int arr[] = {5, 4, 5, 2, 3, 4, 5, 6};
+        int d=5;
+        
+        System.out.print(capacity(arr,d));
+    }
+    public static int capacity(int[] arr,int d)
+    {
+        int low=0,high=0,ab=0;
+        for(int x:arr)
+        {
+            low=Math.max(low,x);
+            high+=x;
+        }
+        
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            
+            if(ans(mid,arr,d))
+            {
+                ab=mid;
+                high=mid-1;
+            }
+            else 
+            {
+                low=mid+1;
+            }
+            
+        }
+        return ab;
+    }
+    public static boolean ans(int mid,int[] arr,int d)
+    {
+        
+        int total=0,days=1;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]+total<=mid)
+            {
+                total+=arr[i];
+            }
+            else 
+            {
+            days++;
+            total=arr[i];
+            }
+        }
+        return days<=d;
+    }
+}
