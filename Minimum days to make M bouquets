@@ -1,0 +1,57 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int arr[] = {7, 7, 7, 7, 13, 11, 12, 7};
+        int m = 2, k = 3;
+        
+        System.out.print(koko(arr,m,k));
+    }
+    public static int koko(int[] arr,int m,int k)
+    {
+        if ((long)m * k > arr.length)
+            return -1;
+        int low=1,high=0,ab=0;
+        for(int x:arr)
+        {
+            high=Math.max(high,x);
+        }
+        
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            
+            if(ans(mid,arr,m,k))
+            {
+                ab=mid;
+                high=mid-1;
+            }
+            else 
+            {
+                low=mid+1;
+            }
+            
+        }
+        return ab;
+    }
+    public static boolean ans(int mid,int[] arr,int m,int k)
+    {
+        
+        int total=0,cnt=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]<=mid)
+            {
+                cnt++;
+                if (cnt == k) {
+                total++;
+                cnt = 0;
+                }
+            }
+            else
+            {
+                cnt=0;
+            }
+        }
+        return (total>=m);
+    }
+}
