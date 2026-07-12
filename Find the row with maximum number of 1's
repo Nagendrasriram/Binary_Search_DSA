@@ -1,0 +1,42 @@
+class Main {
+    public static void main(String[] args) {
+        int[][] mat = {
+            {0, 0, 1, 1},
+            {0, 1, 1, 1},
+            {0, 0, 0, 1},
+            {1, 1, 1, 1}
+        };
+        
+        int n = mat.length;
+        int m = mat[0].length;
+        int cnt_max=0,max_count=0,index=-1;
+        for(int i=0;i<mat.length;i++)
+        {
+            cnt_max=search(mat[i],mat[i].length);
+            if(cnt_max>max_count)
+            {
+                max_count=cnt_max;
+                index=i;
+            }
+        }
+        System.out.println(index);
+    }
+    public static int search(int[] mat,int n)
+    {
+        int low=0,high=n-1,ans=n;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            if(mat[mid]==1)
+            {
+                ans=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return n-ans;
+    }
+}
