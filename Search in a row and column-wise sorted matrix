@@ -1,0 +1,33 @@
+class Main {
+    public static void main(String[] args) {
+        int[][] mat = {
+            {1,  4,  7, 11, 15},
+            {2,  5,  8, 12, 19},
+            {3,  6,  9, 16, 22},
+            {10,13,14,17,24},
+            {18,21,23,26,30}
+        };
+        
+        int target = 5;
+        int n=mat.length,m=mat[0].length;
+        int low=0,high=m-1;
+        boolean found = false;
+        while(low<n && high>=0)
+        {
+            
+            if(mat[low][high]==target)
+            {
+                System.out.print(low+" "+high);
+                break;
+            }
+            else if(mat[low][high]>target)
+            {
+                high--;
+            }
+            else
+            {
+                low++;
+            }
+        }
+    }
+}
